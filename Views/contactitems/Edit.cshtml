@@ -1,0 +1,116 @@
+﻿ @model ContactMAnager.Models.contactitem
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 class="text-2xl font-semibold mt-10">Edit Contact</h1>
+
+<a id="back" asp-action="Index" class="inline-block absolute left-10 top-4 invert grayscale mt-6 ml-6 w-10"> <img src="~/images/340-removebg-preview.png" alt="Back"></a>
+
+<form id="createForm" asp-action="Edit" enctype="multipart/form-data" method="post" class="flex flex-col items-center justify-center mt-6 space-y-6 w-full text-black">
+    <input type="hidden" asp-for="Id">
+    @Html.AntiForgeryToken()
+    @if (Model.ImagePath != null)
+    {
+        <div class="flex flex-col items-center justify-center  w-1/4 space-y-2 transition-all duration-400 ease-in" enctype="multipart/form-data">
+            <img id="uploadImage" src="@Model.ImagePath" alt="Upload Your Image here" asp-for="ImagePath" class="cursor-pointer rounded-full w-44 h-44 object-cover object-center">
+            <label for="uploadImageButton" class="px-16 rounded-xl py-2 text-white text-lg btn btn-primary cursor-pointer">Upload Image</label>
+            <input asp-for="@Model.ImageFile" type="file" accept="image/jpeg, image/png, image/jpg" id="uploadImageButton" class="hidden">
+            <span asp-validation-for="ImagePath" class="text-red-500"></span>
+        </div>
+    }
+    else
+    {
+        <div class="flex flex-col items-center justify-center  w-1/4 space-y-2 transition-all duration-400 ease-in" enctype="multipart/form-data">
+            <img id="uploadImage" src="~/images/uploadImage.png" alt="Upload Your Image here" asp-for="ImagePath" class="cursor-pointer rounded-full w-44 h-44 object-cover object-center">
+            <label for="uploadImageButton" class="px-16 rounded-xl py-2 text-white text-lg btn btn-primary cursor-pointer">Upload Image</label>
+            <input asp-for="@Model.ImageFile" type="file" accept="image/jpeg, image/png, image/jpg" id="uploadImageButton" class="hidden">
+            <span asp-validation-for="ImagePath" class="text-red-500"></span>
+        </div>
+    }
+
+
+    <div class="flex flex-col items-center justify-center  w-full space-y-2 transition-all duration-400 ease-in">
+        <input type="text" asp-for="@Model.FirstName" placeholder="First Name" class="border-[#666666] border-2 rounded-md px-4 py-2 w-1/4">
+        <span asp-validation-for="@Model.FirstName" class="text-red-500"></span>
+    </div>
+
+    <div class="flex flex-col items-center justify-center  w-full space-y-2 transition-all duration-400 ease-in">
+        <input type="text" asp-for="@Model.MiddleName" placeholder="Middle Name" class="border-[#666666] border-2 rounded-md px-4 py-2 w-1/4">
+        <span asp-validation-for="@Model.MiddleName" class="text-red-500"></span>
+    </div>
+
+    <div class="flex flex-col items-center justify-center  w-full space-y-2 transition-all duration-400 ease-in">
+        <input type="text" asp-for="@Model.LastName" placeholder="Last Name" class="border-[#666666] border-2 rounded-md px-4 py-2 w-1/4">
+        <span asp-validation-for="@Model.LastName" class="text-red-500"></span>
+    </div>
+
+    <div class="flex flex-col items-center justify-center  w-full space-y-2 transition-all duration-400 ease-in">
+        <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phone" class="border-2 border-[#666666] rounded-md px-4 py-2 w-1/4">
+        <span asp-validation-for="@Model.PhoneNumber" class="text-red-500"></span>
+    </div>
+
+
+
+
+    <div id="email" class="transition-all duration-400 ease-in flex flex-col items-center justify-center w-full space-y-2 ">
+
+        <div class="relative w-1/4">
+            <input type="email" asp-for="@Model.Email" placeholder="Email" class="border-2 border-[#666666] rounded-md px-4 py-2 w-full">
+            
+        </div>
+
+        <span asp-validation-for="Email" class="text-red-500"></span>
+    </div>
+
+
+
+    <div id="nickname" class="transition-all duration-400 ease-in flex flex-col items-center justify-center w-full space-y-2 ">
+
+        <div class="relative w-1/4">
+            <input type="text" asp-for="@Model.Nickname" placeholder="Enter nickname" class="border-2 border-[#666666] rounded-md px-4 py-2 w-full">
+          
+        </div>
+
+        <span asp-validation-for="Nickname" class="text-red-500"></span>
+    </div>
+
+
+    <div id="birthDay" class="transition-all duration-400 ease-in flex flex-col items-center justify-center  w-full space-y-2 ">
+        <div class="relative w-1/4">
+            <input type="date" asp-for="@Model.BirthDay" placeholder="Email" class="border-2 border-[#666666] rounded-md px-4 py-2 w-full">
+
+        </div>
+        <span asp-validation-for="BirthDay" class="text-red-500"></span>
+    </div>
+
+    <div id="address" class="transition-all duration-400 ease-in flex flex-col items-center justify-center  w-full space-y-2 ">
+        <div class="relative w-1/4">
+            <textarea rows="6" asp-for="@Model.Address" placeholder="Enter Your Address" class="border-2 border-[#666666] rounded-md px-4 py-2 w-full"></textarea>
+         
+        </div>
+        <span asp-validation-for="Address" class="text-red-500"></span>
+    </div>
+
+    <div id="notes" class="transition-all duration-400 ease-in flex flex-col items-center justify-center  w-full space-y-2  ">
+        <div class="relative w-1/4">
+            <textarea rows="4" asp-for="@Model.Notes" placeholder="Notes" class="border-2 border-[#666666] rounded-md px-4 py-2 w-full"></textarea>
+           
+        </div>
+        <span asp-validation-for="Notes" class="text-red-500"></span>
+    </div>
+
+
+
+
+    <button type="submit" class="absolute top-4 right-10 btn btn-primary px-10 rounded-xl py-2 text-white text-lg">Save</button>
+
+
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Edit.js"></script>
+}
+ 
